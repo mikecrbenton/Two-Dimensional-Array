@@ -104,6 +104,7 @@ int main (void)
 	}
 } //END MAIN
 
+//FUNCTION TO RECIEVE AVERAGE OF TOTAL POINTS AND PRINT GRADE
 void printGrade(float average){
 
 	if( average > .899999 ){
