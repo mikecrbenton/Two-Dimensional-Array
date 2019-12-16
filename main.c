@@ -1,25 +1,28 @@
-/*CSC 250 DSU Homework Two-dimensional Array, Mike Benton
-  Program using 2 dimension array to recieve user input
-  on total points possible on test scores and the student 
-  test scores on those tests and output grade
-*/
 
-#include<stdio.h>
+
+#include <stdio.h>
 #include<math.h>
 
-void printGrade(float average); //takes average of points and prints corresponding grade
+/*CSC 250 DSU Homework Two-dimensional Array, Mike Benton
+  A Program using 2 dimensional array to recieve input
+  for the number of tests given and the total points possible on test scores,
+  and the student test scores and calculate final output grade
+*/
+
+//function to take the average of points and print corresponding grade
+void printGrade(float average); 
 
 int main (void)
 
 {
 	int row;			    //counter for row
 	int column;		        //counter for column
-	int studentGrade = 0;	//stores point earned by students	
+	int studentGrade = 0;	//stores points earned by students	
 	int totalGrade = 0;	    //stores total points possible
 	int numStudents;	    //stores number of students in class
 	int numTests;		    //stores number of tests taken		
 
-	printf("\nProgram to figure out student points\n\n");	
+	printf("\n--------Program to figure out total of student test scores--------\n\n");	
 		
 	printf("How many students are in your class? :");
 	scanf("%d", &numStudents);
@@ -28,12 +31,14 @@ int main (void)
 	scanf("%d", &numTests);
 
 	printf("\nYou have %d students, and have given %d tests.\n\n", numStudents, numTests);
-
-	int array[numStudents][numTests];  //2D array holds number of students(rows) and number of tests(columns)
+	
+	//Number of students(rows) and number of tests(columns)
+	int array[numStudents][numTests];  
 					     
 	printf("Please enter the total points available for each of the %d tests given:\n\n", numTests);
 	
-//Enter Values for each test into first row of array ( total points available per test )
+	
+//Enter Values for each test into the first(0th) row of array ( this is the total points available per test )
 
 	int test = 1;	
 
@@ -42,7 +47,6 @@ int main (void)
 		for ( column = 0 ; column < numTests ; column++)
 		{
 			printf("ENTER TEST %d, TOTAL POINTS POSSIBLE: ", test); 
-
 			scanf("%d", &array[0][column]);
 
 			test++;
@@ -50,7 +54,7 @@ int main (void)
 		printf("\n"); //formatting			
 	}
 
-//Loop to student scores into array (start at row 1, not 0 ; 0 is the header row holding total points possible)
+//Loop for student scores into array (start at row 1, not 0 ; 0 is the header row holding total points possible)
 
 	test = 1; //re-initialize
 	int student = 1;
@@ -60,7 +64,6 @@ int main (void)
 		for ( column = 0 ; column < numTests ; column++)
 		{
 			printf("ENTER STUDENT %d, TEST SCORE %d: ",student, test); 
-
 			scanf("%d", &array[row][column]);
 
 			test++;
@@ -70,7 +73,7 @@ int main (void)
 		printf("\n"); //formatting
 	}			
 
-//Loop to ADD TOTAL POINTS possible ( first row )
+//Loop to ADD TOTAL POINTS possible for tests ( first(0th) row )
 
 	for ( row = 0 ; row < 1 ; row++ )
 	{
@@ -80,7 +83,7 @@ int main (void)
 		}
 	}
 
-//Loop to PRINT VALUES to screen
+//Loop to PRINT VALUES of student test scores
 
 	for ( row = 1 ; row <= numStudents ; row++)
 	{
@@ -91,7 +94,8 @@ int main (void)
 
 		printf("The points for student #%d (%d / %d)\n", row, studentGrade, totalGrade);
 		
-		float gradePoint = (float)studentGrade/(float)totalGrade; //get average
+		//get average
+		float gradePoint = (float)studentGrade/(float)totalGrade; 
 		
 		gradePoint = round(gradePoint * 100.0)/100.0;
 	
@@ -100,9 +104,10 @@ int main (void)
 		printGrade(gradePoint);
 
 		studentGrade = 0;	//Re-initialize student grade for next row
-		printf("\n");           //formatting
+		printf("\n");       //formatting
 	}
 } //END MAIN
+
 
 //FUNCTION TO RECIEVE AVERAGE OF TOTAL POINTS AND PRINT GRADE
 void printGrade(float average){
